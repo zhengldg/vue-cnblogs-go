@@ -37,6 +37,7 @@ export default {
                     wrapperHeight: 0,
                     pageIndex: 1,
                     pageSize: 15,
+                    lastId: ''
                 }
             },
             methods: {
@@ -63,21 +64,27 @@ export default {
                     else {
                         url = api.getRecentNews(this.pageIndex, this.pageSize);
                     } 
-                    console.log(url);
                     this.$http.get(url)
                     .then((x)=>{
-                        var len = x.data.entry.length;
-                        for(var i = 0; i<len; i++){
-                            this.list.push(x.data.entry[i]);
-                        }
-                        if(len < this.pageSize){
-                            this.allLoaded = true;
-                        }else{
-                        this.pageIndex += 1;
+                        if (x.data.entry) {
+                            var len = x.data.entry.length;
+                            if (len > 0) {
+                                for (var i = 0; i < len; i++) {
+                                    this.list.push(x.data.entry[i]);
+                                }
+                                if (x.data.entry[0].id == this.lastId) {
+                                    this.allLoaded = true;
+                                } else {
+                                    this.lastId = x.data.entry[0].id;
+                                    this.pageIndex += 1;
+                                }
+                            } else {
+                                this.allLoaded = true;
+                            }
                         }
                     })
                     .catch((x)=>{
-                        console.log(x);
+                        toast.error('抱歉，加载出错了');
                     })
                 }
             },

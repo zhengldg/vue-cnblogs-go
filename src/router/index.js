@@ -31,6 +31,11 @@ const router = new VueRouter({
     component: require('../views/newDetail')
   },
   {
+    path: '/search/:t',
+    name:'search',
+    component: require('../views/author')
+  },
+  {
     path: '*',
     component: require('../views/blogs')
   }]

@@ -2,12 +2,12 @@
     <div id="app">
         <div class="container">
             <div class="row top-cont vertical-align text-center">
-                <div class="col-xs-4" ><span>Go Cnblogs</span></div>
+                <div class="col-xs-4" ><span>Cnblogs vue</span></div>
                 <div class="col-xs-8">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="请输入博主名称">
+                        <input type="text" class="form-control" placeholder="请输入博主名称" v-bind='t'>
                         <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">Go</button>
+                    <button class="btn btn-default" type="button" @click='go'>Go</button>
                   </span>
                     </div>
                 </div>
@@ -32,13 +32,34 @@ export default {
   name: 'app',
   data(){
     return {
-        index : 0
+        index : 0,
+        t: ''
+    }
+  },
+  methods: {
+    go (){
+        this.$router.push({name:'search', params:{t: this.t}});
     }
   }
 }
 </script>
 
-<style type='text/css'>
+<style lang="less" >
+@top-cont-padding-tb:9px;
+@btm-height: 10px;
+
+.divier{
+    height:3px;
+    clearfix:both;
+    width:100%;
+}
+
+.btm-divier {
+    height:10px;
+}
+.line-border{
+     border-bottom: 1px solid #ddd;
+}
 
 .vertical-align {
     display: flex;
@@ -47,7 +68,7 @@ export default {
 
 .top-cont{
     background: #EA6f5A;
-    height: 44px;
+    padding: @top-cont-padding-tb 0;
 }
 .top-cont > div span{
    color: white;
@@ -70,8 +91,6 @@ export default {
 }
 
 .media-list .sub-text img{
-    margin-top: 3px;
-    display: inline;
     width: 16px;
     height: 16px;
 }
@@ -99,15 +118,15 @@ export default {
 }
 
 div.cn-list a.media{
-    border-bottom: 1px solid #ddd;
     position: relative;
     display: block;
     text-decoration:none;
     margin-top: 0;
     color: #000;
     padding: 10px 2px;
-} 
 
+    .line-border();
+} 
 
 .page-title {
     font-size: 20px;
@@ -120,11 +139,6 @@ div.cn-list a.media{
 .sub-title{
     text-align: center;
     color: #888;
-}
-.clearfix{
-    width:100%;
-    height: 5px;
-    clear:both;
 }
 
 .page-loadmore .mint-spinner {
@@ -159,5 +173,4 @@ div.cn-list a.media{
     -webkit-transform: rotate(180deg);
             transform: rotate(180deg);
 }
-
 </style>

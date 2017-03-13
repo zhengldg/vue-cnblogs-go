@@ -1,27 +1,35 @@
 <template>
-	<div id='detail-container'>
-		<div class="page-title">{{ title}}
-		</div>
-		<p class='sub-title'> 来源：{{ sourceName }}  </p> <!-- {{this.$route.params.date || toDate}} -->
-		<div v-html="content">
-		</div>
-	</div>
+    <div class='detail-container'>
+        <div class="page-title">{{ title}}
+        </div>
+        <p class='sub-title'> 来源：{{ sourceName }} </p>
+        <!-- {{this.$route.params.date || toDate}} -->
+        <div v-html="content" class="article">
+        </div>
+        <div>
+            <comment cate='news' :id='id'></comment>
+        </div>
+    </div>
 </template>
+
 
 <script type="text/javascript">
 	import api from '../api'
+	import {toast} from '../api/util'
+	import Comment from '../components/Comment'
 	export default {
 		data() {
 				return {
 					content: '',
 					title: '',
 					sourceName:'',
-					submitDate:''
+					submitDate:'',
+					id:''
 				}
 			},
 			created() {
-				var id = this.$route.params.id;
-				var url = api.getNewBody(id);
+				this.id = this.$route.params.id;
+				var url = api.getNewBody(this.id);
 				this.$http.get(url)
 					.then((x) => {
 						var data = x.data;
@@ -31,8 +39,11 @@
 						this.content = data.Content;
 					})
 					.catch((x) => {
-						console.log(x);
+						toast.error('抱歉，加载新闻内容出错了');
 					})
+			},
+			components:{
+				Comment
 			}
 	}
 </script>

@@ -9,6 +9,7 @@ import './assets/bootstrap/less/bootstrap.less'
 
 import Mint from 'mint-ui';
 import 'mint-ui/lib/style.css'
+
 Vue.use(Mint);
 Vue.prototype.$http = Axios;
 
