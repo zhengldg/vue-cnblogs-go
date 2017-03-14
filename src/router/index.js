@@ -6,38 +6,35 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 const router = new VueRouter({
-  routes: [
-    {
-    path: '/detail/:id',
-    name:'detail',
-    component: require('../views/detail')
-  },
-  {
+  routes: [{
     path: '/index',
-    component: require('../views/index')
-  },
-  {
-    path: '/blogs',
-    component: require('../views/blogs')
-  },
-    {
-    path: '/news/:type',
-    name: 'news',
-    component: require('../views/news')
-  },
-  {
-    path: '/newDetail/:id',
-    name:'newDetail',
-    component: require('../views/newDetail')
-  },
-  {
+    component: require('../views/index'),
+    children: [{
+      path: '/detail/:id',
+      name: 'detail',
+      component: require('../views/detail')
+    }, {
+      path: '/blogs',
+      component: require('../views/blogs')
+    }, {
+      path: '/news/:type',
+      name: 'news',
+      component: require('../views/news')
+    }, {
+      path: '/newDetail/:id',
+      name: 'newDetail',
+      component: require('../views/newDetail')
+    }, {
+      path: '*',
+      component: require('../views/blogs')
+    }]
+  }, {
     path: '/search/:t',
-    name:'search',
+    name: 'search',
     component: require('../views/author')
-  },
-  {
+  }, {
     path: '*',
-    component: require('../views/blogs')
+    component: require('../views/index')
   }]
 })
 

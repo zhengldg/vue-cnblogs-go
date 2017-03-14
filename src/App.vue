@@ -2,27 +2,17 @@
     <div id="app">
         <div class="container">
             <div class="row top-cont vertical-align text-center">
-                <div class="col-xs-4" ><span>Cnblogs vue</span></div>
+                <div class="col-xs-4" ><span @click='goHome'>Cnblogs vue</span></div>
                 <div class="col-xs-8">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="请输入博主名称" v-bind='t'>
+                        <input type="text" class="form-control" placeholder="请输入博主名称" v-model='t'>
                         <span class="input-group-btn">
                     <button class="btn btn-default" type="button" @click='go'>Go</button>
                   </span>
                     </div>
                 </div>
             </div>
-            <ul class="nav nav-tabs">
-                <router-link tag='li' :class='{"active": index == 0}' @click.native="index=0" :to="{ path: '/blogs', query: { type: 'all' }}"><a>所有博客</a></router-link>
-                <router-link tag='li' :class='{"active": index == 1}' @click.native="index=1" :to="{ path: '/blogs', query: { type: 'hot' }}"><a>热门博客</a></router-link>
-                <router-link tag='li' :class='{"active": index == 2}' @click.native="index=2" :to="{ path: '/blogs', query: { type: 'top' }}"><a>推荐排行</a></router-link>
-                <router-link tag='li' :class='{"active": index == 3}' @click.native="index=3" :to="{ name: 'news', params: { type: 'hot' }}"><a>新闻</a></router-link>
-            </ul>
-            <div class="clearfix"></div>
-            <div class="clearfix"></div>
-            <div>
-                <router-view :key="$route.path"></router-view>
-            </div>
+            <router-view ></router-view>
         </div>
     </div>
 </template>
@@ -37,8 +27,13 @@ export default {
     }
   },
   methods: {
+    goHome(){
+        this.$router.push({path:'/blogs'});
+    },
     go (){
-        this.$router.push({name:'search', params:{t: this.t}});
+        if(this.t){
+            this.$router.push({name:'search', params:{t: this.t}});
+        }
     }
   }
 }

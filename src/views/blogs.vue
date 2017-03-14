@@ -90,6 +90,7 @@ export default {
             }
         },
         created() {
+            console.log(1);
             this.get();
         },
         mounted() {

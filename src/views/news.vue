@@ -9,7 +9,7 @@
                             <div class="media-body media-middle">
                                 <h4 class="media-heading">{{item.title}}</h4>
                             </div>
-                            <div class='sub-text'><img class="media-object" :src="item.topicIcon" alt="无" v-on:error='getErrorImg'> {{item.sourceName}} <span>{{item.comments}}评论</span> <span>{{item.diggs}}赞</span> <span>{{item.published | shortTime}}</span></div>
+                            <div class='sub-text vertical-align'><img class="media-object" :src="item.topicIcon" alt="无" v-on:error='getErrorImg'> {{item.sourceName}} <span>{{item.comments}}评论</span> <span>{{item.diggs}}赞</span> <span>{{item.published | shortTime}}</span></div>
                         </router-link>
                     </template>
                 </div>

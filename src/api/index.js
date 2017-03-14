@@ -1,4 +1,4 @@
-const _baseUrl = 'http://localhost:37201/api/';
+const _baseUrl = 'http://zldg.ngrok.cc/api/';
 
 export default{
 	getHomeSiteBlogs(pageSize, pageIndex) {
