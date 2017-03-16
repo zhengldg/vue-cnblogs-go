@@ -4,7 +4,10 @@
 >
 
 ## Build Setup
-
+##  app页面 ##
+![](https://github.com/zhengldg/netimages/blob/master/vue-cnblogs/blogs.png)
+![](https://github.com/zhengldg/netimages/blob/master/vue-cnblogs/hotblogs.png)
+![](https://github.com/zhengldg/netimages/blob/master/vue-cnblogs/news.png)
 ``` bash
 # install dependencies
 npm install
